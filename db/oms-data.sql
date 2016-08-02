@@ -3,7 +3,7 @@
 start transaction;
 
 insert into nk2_productions (id, title, performer, opens, active, ticket_image_src, description) values
-  (1, 'HYLJE - Musta musikaalikomedia', 'OMS-teatteri', '2015-08-08 13:00:00', true, 'oms-lippu.png', 'OMS-teatterin esityksen kuvaus tähän.\nJa vielä parempaa tekstiä, Harsa syntyykö sulta jotain lennokasta?');
+  (1, 'HYLJE - Musta musikaalikomedia', 'OMS-teatteri', '2015-08-08 13:00:00', true, 'lippu_dummy.png', 'OMS-teatterin esityksen kuvaus tähän.\nJa vielä parempaa tekstiä, Harsa syntyykö sulta jotain lennokasta?');
  
 insert into nk2_shows (title, production_id, venue_id, time, active, inactivate_time, description) values
     ('Ensi-ilta', 1, 9, '2016-10-13 19:00:00', true, '2016-10-13 17:00:00', 'HYLJE ensi-ilta on Konepajan Brunossa, Aleksis Kiven katu 17a, Helsinki. Tervetuloa katsomaan uskomatonta taidetta!'),
