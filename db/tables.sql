@@ -8,7 +8,8 @@ drop table if exists
   nk2_discount_codes,
   nk2_discount_groups,
   nk2_shows,
-  nk2_productions;
+  nk2_productions,
+  nk2_admins;
 
 drop table if exists
   nk2_seats,
@@ -162,6 +163,17 @@ create table nk2_tickets (
   foreign key (seat_id) references nk2_seats (id),
   foreign key (discount_group_id) references nk2_discount_groups (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- Simple admin authentication system as we don't have confluence
+create table nk2_admins (
+  `id` int(10) unsigned not null auto_increment,
+  `username` varchar(100) not null,
+  `hash` varchar(100) not null,
+  `checker_only` boolean not null default '1',
+  `last_login` datetime default NULL,
+  PRIMARY KEY (`id`),
+  unique key admin_key (username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 commit;
