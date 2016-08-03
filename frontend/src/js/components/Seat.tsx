@@ -1,6 +1,5 @@
 'use strict';
 import EventHandler = __React.EventHandler;
-
 import React = require('react');
 import Props = __React.Props;
 import {ISeat} from '../../../../backend/src/venue';
@@ -11,7 +10,6 @@ export interface ISeatProps extends Props<any> {
   rowName: string;
   status: string;
   seat: ISeat;
-
   onClick: any;
 }
 

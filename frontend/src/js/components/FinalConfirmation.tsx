@@ -1,10 +1,8 @@
 'use strict';
 import ReactElement = __React.ReactElement;
-
 import React = require('react');
 import Bootstrap = require('react-bootstrap');
 import {IOrder} from '../../../../backend/src/order';
-
 
 export interface IFinalConfirmationProps {
   order: IOrder;
