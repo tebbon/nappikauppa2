@@ -1,6 +1,5 @@
-import {IOrder} from '../../../../backend/src/order';
 'use strict';
-
+import {IOrder} from '../../../../backend/src/order';
 import React = require('react');
 import Backbone = require('backbone');
 Backbone.emulateHTTP = true; // PATCH's don't work with our mod_rewrites

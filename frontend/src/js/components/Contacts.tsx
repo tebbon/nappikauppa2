@@ -7,7 +7,7 @@ import $ = require('jquery');
 
 export interface IContactsProps {
   active: boolean;
-
+  prefilled_discount?: string;
   onSaveOrderInfo: Function;
 }
 
@@ -21,13 +21,17 @@ export interface IContactsState {
 
 export default class Contacts extends React.Component<IContactsProps, IContactsState> {
 
-  constructor() {
+  constructor(props: IContactsProps) {
     super();
 
-    this.state = {
+    this.state = this._getInitialState(props);
+  }
+
+  private _getInitialState(props: IContactsProps) {
+    return {
       name: '',
       email: '',
-      discount_code: '',
+      discount_code: props.prefilled_discount,
       wants_email: false,
       errors: []
     };
@@ -114,7 +118,7 @@ export default class Contacts extends React.Component<IContactsProps, IContactsS
             onChange={this.onValueChange.bind(this, 'discount_code')}
             value={this.state.discount_code} />
         </div>
-        <div style={{maxWidth: '200px'}}>
+        <div style={{maxWidth: '200px', visibility: 'hidden'}}>
           <Bootstrap.Input
             label='Haluan tiedon ensi vuoden lipunmyynnin alkamisesta'
             type='checkbox'

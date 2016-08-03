@@ -1,5 +1,5 @@
-import ReactElement = __React.ReactElement;
 'use strict';
+import ReactElement = __React.ReactElement;
 
 import React = require('react');
 import Bootstrap = require('react-bootstrap');

@@ -25,11 +25,12 @@ insert into nk2_sections (id, venue_id, title, row_name) values
   (13, 6, 'Permanto',     'rivi'), -- Louhisali
   (14, 7, 'Numeroimaton', ''), -- Turku Sigyn-sali
   (15, 8, 'Permanto',     'rivi'), -- Kuopio
-  (16, 9, 'Permanto vasen', 'rivi'), -- Bruno, 
-  (17, 9, 'Permanto, parhaat paikat', 'rivi'), -- Bruno, normaalipaikat
-  (18, 9, 'Permanto keski', 'rivi'), -- Bruno, reservipaikat
-  (19, 9, 'Permanto oikea', 'rivi'),
-  (20, 9, 'Takarivi', 'rivi'); -- Bruno, shaissepaikat
+
+  (16, 9, 'Oikea', 'rivi'), -- Bruno, stage right blokki
+  (17, 9, 'Keski', 'rivi'), -- Bruno, keskiblokki etupaikat
+  (18, 9, 'Keski', 'rivi'), -- Bruno, keskiblokki takapaikat
+  (19, 9, 'Vasen', 'rivi'), -- Bruno, stage left blokki
+  (20, 9, 'Taka', 'rivi'); -- Bruno, takarivi
 
 -- NOTE: to "easily" edit the seat coordinates, one can for example copy all the seats of a venue into a file 't', and then run
 -- cat t|awk '{print "  "$1, $2, $3, $4-33 ",", $5+32",",$6}' to change x-coordinates to x = x-33 and y-coordinates to y = y+32

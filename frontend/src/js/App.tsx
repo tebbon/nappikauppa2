@@ -19,6 +19,10 @@ import Router = require('./router');
 
 ReactDOM.render(<Header />, $('header')[0]);
 
+Router.on('route:show', function(showid: string) {
+  ReactDOM.render(<Store showid={parseInt(showid)} />, document.getElementsByTagName('main')[0]);
+});
+
 Router.on('route:default', function(url: string) {
   var store;
   if (url) {
@@ -28,10 +32,6 @@ Router.on('route:default', function(url: string) {
     store = <Store />;
   }
   ReactDOM.render(store, document.getElementsByTagName('main')[0]);
-});
-
-Router.on('route:show', function(showid) {
-  ReactDOM.render(<Store showid={parseInt(showid)} />, document.getElementsByTagName('main')[0]);
 });
 
 Backbone.history.start();
