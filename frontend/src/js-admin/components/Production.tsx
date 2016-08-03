@@ -20,7 +20,7 @@ export interface IProductionState {
   production_id?: number;
 }
 
-var PERFORMERS = [{value: 'Teekkarispeksi', name: 'Teekkarispeksi'}, {value: 'NääsPeksi', name: 'NääsPeksi'}];
+var PERFORMERS = [{value: 'OMS-teatteri', name: 'OMS-teatteri'}, {value: 'Teekkarispeksi', name: 'Teekkarispeksi'}, {value: 'NääsPeksi', name: 'NääsPeksi'}];
 
 // this is a 'hacky' way, but works for stuff that consists of objects, arrays, strings and numbers
 function almostDeepClone<T extends {}>(obj: T): T {
