@@ -19,12 +19,10 @@ module.exports = {
     user: '13466',
     password: '6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ'
   },
-  confluence_auth: {
-    enabled: true,
-    url: 'http://localhost:3010/groups/',
-    groups: {
-      admin: 'lippukauppa-admin',
-      checker: 'lippukauppa-tarkistin'
+  admin_users: [
+    {
+      username: 'huuhaa',
+      password: 'foobar'
     }
-  }
+  ]
 };

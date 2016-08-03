@@ -3,7 +3,7 @@
 import db = require('./db');
 import log = require('./log');
 import mail = require('./mail');
-import auth = require('./confluenceAuth');
+import auth = require('./authentication');
 var config = require('../config/config.js');
 
 export interface IDiscountCode {
