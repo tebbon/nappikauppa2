@@ -6,6 +6,7 @@ import _ = require('underscore');
 
 export interface ISeat {
   id: number;
+  section_id: number;
   row: string;
   number: string;
   x_coord: number;
@@ -40,6 +41,7 @@ export function getAll(venue_id?: number): Promise<IVenue[]> {
     section.title as section_title, \
     section.row_name, \
     seat.id as seat_id, \
+    seat.section_id as seat_section_id, \
     seat.row, \
     seat.number, \
     seat.x_coord, \
@@ -69,8 +71,9 @@ export function getAll(venue_id?: number): Promise<IVenue[]> {
         // turn seats into a dictionary with indexBy and use mapObject to strip venue & section info
         var seats = _.indexBy(dbRowsForSection, (dbRow: any) => dbRow.seat_id);
         section.seats = _.mapObject(seats, (dbRowForSeat: any) => {
-          var seat: ISeat = _.pick(dbRowForSeat, ['seat_id', 'row', 'number', 'x_coord', 'y_coord', 'inactive']);
+          var seat: ISeat = _.pick(dbRowForSeat, ['seat_id', 'seat_section_id', 'row', 'number', 'x_coord', 'y_coord', 'inactive']);
           seat.id = dbRowForSeat.seat_id; // we want to call this 'id' instead of 'seat_id'
+          seat.section_id = dbRowForSeat.seat_section_id;
           return seat;
         });
         return section;
@@ -110,9 +113,9 @@ export function update(venue_id: number, venue: IVenue): Promise<IVenue> {
   })
   .then((res) => {
     log.info('ADMIN: Sections updated, updating seats');
-    var query_start = 'insert into nk2_seats (id, inactive) values ';
+    var query_start = 'insert into nk2_seats (id, section_id, inactive) values ';
     var insert_values = _.flatten(_.values(venue.sections).map((section: ISection) => _.values(section.seats)))
-                         .map((seat: ISeat) => db.format('(:id, :inactive)', _.extend({venue_id: venue_id}, seat)));
+                         .map((seat: ISeat) => db.format('(:id, :section_id, :inactive)', _.extend({venue_id: venue_id}, seat)));
     var query_end = ' on duplicate key update inactive = values(inactive)';
 
     return db.query(query_start + insert_values.join(',') + query_end).then(() => {
