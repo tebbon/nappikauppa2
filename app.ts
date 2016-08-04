@@ -18,14 +18,14 @@ var checkerApi = require('./backend/build/routes-checker');
 var log = require('./backend/build/log.js');
 
 var adminAuth = httpAuth.basic({
-    realm: 'Nappikauppa v2 - use your speksi-intra account'
+    realm: 'Nappikauppa v2'
   }, function(username, password, cb) {
     auth.authenticate(username, password, cb);
   }
 );
 
 var checkerAuth = httpAuth.basic({
-    realm: 'Nappikauppa v2 lipuntarkistin - use your speksi-intra account'
+    realm: 'Nappikauppa v2 lipuntarkistin'
   }, function(username, password, cb) {
     auth.authenticate(username, password, cb);
   }
