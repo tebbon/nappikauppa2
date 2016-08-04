@@ -33,8 +33,11 @@ function almostDeepClone<T extends {}>(obj: T): T {
 export default class DiscountCode extends React.Component<IDiscountCodeProps, IDiscountCodeState> {
   constructor() {
     super();
-    var defaultEmailSubject = 'Alennuskoodisi Teekkarispeksin näytökseen';
-    var defaultEmailText = 'Hei,\n\ntällä koodilla saat $EUR$ eur alennusta ostaessasi lipun osoitteessa $URL$\n\n$CODE$\n\nTervetuloa katsomaan esityksiämme!';
+    var defaultEmailSubject = 'HYLJE - ennakkolipun lunastus';
+    var defaultEmailText = '\
+Arvoisa ennakkolipun ostaja,\n\n\n\
+Voit lunastaa jo ostamasi ennakkolipun haluamaasi näytökseen tällä henkilökohtaisella linkillä $URL$#preorder/$CODE$\n\n\
+Ongelmatilanteessa sinua auttavat tuottajat@omsteatteri.fi\n\nTervetuloa katsomaan HYLJE-musikaalia!\n\nTerveisin,\nOMS-teatteri';
     this.state = {originalDiscountCodes: [], discountCodes: null, newDiscountCodes: [], new_email_subject: defaultEmailSubject, new_email_text: defaultEmailText};
   }
 
@@ -79,7 +82,7 @@ export default class DiscountCode extends React.Component<IDiscountCodeProps, ID
 
   generateNewCodes() {
     var s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var randoms = this.state.new_code_emails.map(() => '_' + Array(6).join().split(',').map(function() { return s.charAt(Math.floor(Math.random() * s.length)); }).join(''));
+    var randoms = this.state.new_code_emails.map(() => '_' + Array(8).join().split(',').map(function() { return s.charAt(Math.floor(Math.random() * s.length)); }).join(''));
     var newCodes = this.state.new_code_emails.map((email, i): IDiscountCode => {
       return {
         code: this.state.new_code_base + randoms[i],
@@ -120,6 +123,13 @@ export default class DiscountCode extends React.Component<IDiscountCodeProps, ID
             <tr><td>Käyttökertoja</td><td>{editable.Number(this, this.state, 'new_code_use_max')}</td></tr>
           </tbody>
         </Bootstrap.Table>
+        <Bootstrap.Table bordered>
+          <tbody>
+            <tr><td>Viestin otsikko</td><td>{editable.String(this, this.state, 'new_email_subject')}</td></tr>
+            <tr><td>Viestin teksti<br/><br/>$CODE$ korvataan alennuskoodilla,<br/>$EUR$ koodin arvolla ja<br/>$URL$ lippukaupan osoitteella.</td>
+              <td>{editable.Text(this, this.state, 'new_email_text')}</td></tr>
+          </tbody>
+        </Bootstrap.Table>
         <Bootstrap.Button onClick={this.generateNewCodes.bind(this)} disabled={!canGenerateCodes}>Generoi koodit</Bootstrap.Button>
         <h2>Uudet alennuskoodit</h2>
         <Bootstrap.Table bordered>
@@ -129,6 +139,7 @@ export default class DiscountCode extends React.Component<IDiscountCodeProps, ID
             <th>Ryhmä</th>
             <th>Email</th>
             <th>Käyttökertoja alunperin</th>
+            <th>Lähtevä viesti</th>
           </tr></thead>
           <tbody>
           {this.state.newDiscountCodes.map((code) => {
@@ -138,17 +149,11 @@ export default class DiscountCode extends React.Component<IDiscountCodeProps, ID
                 <td>{code.code_group}</td>
                 <td>{code.email}</td>
                 <td>{code.use_max}</td>
+                <td>{code.email_text}</td>
               </tr>
             );
           })}
         </tbody></Bootstrap.Table>
-        <Bootstrap.Table bordered>
-          <tbody>
-            <tr><td>Viestin otsikko</td><td>{editable.String(this, this.state, 'new_email_subject')}</td></tr>
-            <tr><td>Viestin teksti<br/><br/>$CODE$ korvataan alennuskoodilla,<br/>$EUR$ koodin arvolla ja<br/>$URL$ lippukaupan osoitteella.</td>
-              <td>{editable.Text(this, this.state, 'new_email_text')}</td></tr>
-          </tbody>
-        </Bootstrap.Table>
         <Bootstrap.Button onClick={() => this.saveChanges(true, false)} disabled={this.state.newDiscountCodes.length === 0}>Tallenna koodit</Bootstrap.Button>
         <span style={{marginLeft: '5px', marginRight: '5px'}}>tai</span>
         <Bootstrap.Button onClick={() => this.saveChanges(true, true)} disabled={this.state.newDiscountCodes.length === 0}>Tallenna ja lähetä koodit</Bootstrap.Button>

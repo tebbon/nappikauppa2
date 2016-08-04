@@ -22,6 +22,8 @@ export default class FinalConfirmation extends React.Component<IFinalConfirmatio
     var discountCode = this.props.order.discount_code;
     var ticketTotal = this.props.order.tickets_total_price;
     var discountedTotalEl: ReactElement<any> = null;
+    var buttonLabel = finalPrice > 0.5 ? 'Siirry maksamaan' : 'Vahvista liput';
+    var buttonBusyLabel = finalPrice > 0.5 ? 'Siirrytään maksupalveluun' : 'Vahvistetaan lippuja';
     if (discountCode) {
       discountedTotalEl = (
         <tr>
@@ -51,7 +53,7 @@ export default class FinalConfirmation extends React.Component<IFinalConfirmatio
         </table>
 
         <Bootstrap.Button id='proceedToPayment' disabled={!active} onClick={active ? this.props.onProceedToPayment : null}>
-          {active ? 'Siirry maksamaan' : 'Siirrytään maksupalveluun'}
+          {active ? buttonLabel : buttonBusyLabel}
         </Bootstrap.Button>
       </div>
     );

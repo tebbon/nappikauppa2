@@ -12,12 +12,9 @@ import ReactDOM = require('react-dom');
 import Backbone = require('backbone');
 import $ = require('jquery');
 
-import Header from './components/Header';
 import Store from './components/Store';
 
 import Router = require('./router');
-
-ReactDOM.render(<Header />, $('header')[0]);
 
 Router.on('route:show', function(showid: string) {
   ReactDOM.render(<Store showid={parseInt(showid)} />, document.getElementsByTagName('main')[0]);

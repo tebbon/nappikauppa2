@@ -312,10 +312,10 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
       var order_id = this.props.args[0];
       var order_hash = this.props.args[1];
       result = (
-        <div className='alert alert-success'><p>Tilaus onnistui!</p>
+        <div className='alert alert-success'><p><em>Tilaus onnistui!</em></p>
           <p>Lähetimme liput sähköpostitse. Mikäli lippuja ei näy, tarkistathan roskapostikansiosi.
-          Ongelmatapauksissa auttaa <a className='alert-link' href='mailto:liput@teekkarispeksi.fi'>liput@teekkarispeksi.fi</a>.
-          Voit myös <a className='alert-link' href={'api/orders/' + order_id + '/' + order_hash + '/tickets.pdf'}>ladata liput tästä.</a></p>
+          Ongelmatapauksissa auttaa <a className='alert-link' href='mailto:liput@omsteatteri.fi'>liput@omsteatteri.fi</a>.</p>
+          <p>Voit myös <a className='alert-link' href={'api/orders/' + order_id + '/' + order_hash + '/tickets.pdf'}>ladata liput tästä.</a></p>
         </div>
       );
     } else if (this.props.action === 'fail') {
