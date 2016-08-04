@@ -73,7 +73,6 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
     this.shows = [];
     this.tickets = [];
     this.production = null;
-
     this.state = this._getInitialState(props);
   }
 
@@ -351,7 +350,12 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
         finalConfirmationElem = <FinalConfirmation order={this.order} paymentBegun={this.state.paymentBegun} onProceedToPayment={this.onProceedToPayment.bind(this)} />;
         /* fall through */
       case 'contacts':
-        contactsElem = <Contacts active={this.state.page === 'contacts'} onSaveOrderInfo={this.onSaveOrderInfo.bind(this)} />;
+        contactsElem =
+          <Contacts
+            active={this.state.page === 'contacts'}
+            onSaveOrderInfo={this.onSaveOrderInfo.bind(this)}
+            prefilled_discount={this.props.action && this.props.action === 'preorder' ? this.props.args[0] : ''}
+          />;
         /* fall through */
       case 'seats':
         var active = this.state.page === 'seats' && Moment(this.state.show.inactivate_time) > Moment() && Moment(this.state.show.time) > Moment() && this.state.show.reserved_percentage < 100;
