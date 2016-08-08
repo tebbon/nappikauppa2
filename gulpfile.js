@@ -52,7 +52,7 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('img', function() {
-  return gulp.src('./frontend/src/img/**/*.{jpg,gif,png}')
+  return gulp.src('./frontend/src/img/**/*.{jpg,gif,png,svg}')
   .pipe(gulp.dest('./frontend/build/public/img/'));
 });
 

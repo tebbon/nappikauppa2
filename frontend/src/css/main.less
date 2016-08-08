@@ -45,6 +45,9 @@ footer {
     padding: 80px 8%;
     display: block;
   }
+  img {
+    margin-bottom: 20px;
+  }
 }
 
 a {
@@ -256,7 +259,7 @@ a.seat {
     position: relative;
     background-size: auto;
     background-repeat: no-repeat;
-    width: 356px;
+    width: 300px;
     height: 470px;
   }
 }
@@ -269,10 +272,13 @@ a.seat {
 @media (max-width: 600px) {
   header {
     .title-nav-wrapper {
-      padding: 20px !important;
+      padding: 20px 0 20px 20px !important;
     }
     h1 {
       font-size: 25px;
+    }
+    img {
+      margin-right: 0px;
     }
   }
   footer {
@@ -288,7 +294,7 @@ a.seat {
   h1 {
     font-size: 30px;
   }
-  h2 {
+  h2 {  
     font-size: 24px;
   }
   h3 {
@@ -310,6 +316,7 @@ a.seat {
       width: 100%;
       padding-top: 10px;
       padding-bottom: 20px;
+      margin-right: 0px;
 
       &.shopping-cart {
         li div.ticket {
