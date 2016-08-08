@@ -49,7 +49,7 @@ export function generatePdf(tickets: ITicket[]) {
       doc.addPage();
     }
     doc.rect(30, 30, 15, 135)
-        .fill('#FEF035') // yellow
+        .fill('#06529A') // blue
 
         .font('mp-bold')
         .fill('#000000')
