@@ -49,7 +49,8 @@ export default class SeatSelector extends React.Component<ISeatSelectorProps, an
 
     return (
       <div className={divClass}>
-        <h2>Paikkojen valinta <small>2/5</small></h2>
+        <h2>Valitse paikat <small>2/5</small></h2>
+        <span>Vapaat paikat näkyvät vihreinä. Valitse haluamasi paikat klikkaamalla niitä.<br/><br/></span>
         <span dangerouslySetInnerHTML={{__html: rawDescriptionMarkup}} />
         <div className='theaterLayout' style={{backgroundImage: 'url(public/img/venues/' + this.props.venue.layout_src + ')'}}>
           {_.values(this.props.venue.sections).map(function(section) {

@@ -111,23 +111,15 @@ export default class Contacts extends React.Component<IContactsProps, IContactsS
 
         <div>
           <Bootstrap.Input
-            label='Alennuskoodi'
+            label='Ennakkolippukoodi'
             type='text'
             bsStyle={ _.contains(this.state.errors, 'discount_code') ? ('error') : null }
             readOnly={!active}
             onChange={this.onValueChange.bind(this, 'discount_code')}
             value={this.state.discount_code} />
         </div>
-        <div style={{maxWidth: '200px', visibility: 'hidden'}}>
-          <Bootstrap.Input
-            label='Haluan tiedon ensi vuoden lipunmyynnin alkamisesta'
-            type='checkbox'
-            readOnly={!active}
-            onChange={this.onValueChange.bind(this, 'wants_email')}
-            value={this.state.wants_email} />
-        </div>
         <div>
-          <Bootstrap.Button id='saveOrderInfo' disabled={!active} onClick={active ? this.onSave.bind(this) : null}>Tallenna</Bootstrap.Button>
+          <Bootstrap.Button id='saveOrderInfo' disabled={!active} onClick={active ? this.onSave.bind(this) : null}>Jatka</Bootstrap.Button>
         </div>
       </div>
     );
