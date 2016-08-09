@@ -47,9 +47,13 @@ export default class SeatSelector extends React.Component<ISeatSelectorProps, an
     var discounts = _.pluck(this.props.show.discount_groups, 'discount');
     var statuses = this.getSeatStatuses();
 
+    var date = new Date(this.props.show.time);
+    var dateStr = date.getDate() + '.' + (date.getMonth() + 1) + '.';
+
     return (
       <div className={divClass}>
         <h2>Valitse paikat <small>2/5</small></h2>
+        <h2><small>{dateStr} {this.props.show.title}</small></h2>
         <span>Vapaat paikat näkyvät vihreinä. Valitse haluamasi paikat klikkaamalla niitä.<br/><br/></span>
         <span dangerouslySetInnerHTML={{__html: rawDescriptionMarkup}} />
         <div className='theaterLayout' style={{backgroundImage: 'url(public/img/venues/' + this.props.venue.layout_src + ')'}}>
