@@ -32,6 +32,7 @@ npm-debug.log
 # config
 config/config.js
 config/google-analytics.js
+config/facebook.js
 
 nohup.out
 

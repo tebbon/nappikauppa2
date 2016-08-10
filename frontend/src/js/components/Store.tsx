@@ -22,6 +22,7 @@ import {IDiscountGroup} from '../../../../backend/src/discountGroup';
 import {IVenue, ISection, ISeat} from '../../../../backend/src/venue';
 
 import Router = require('../router');
+import Fecesbook = require('../fecesbook');
 
 // TODO: get this from backend, as it should match as closely as possible to backend's timer
 const EXPIRATION_IN_MINUTES = 15;
@@ -244,6 +245,7 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
         discount_group_id: t.discount_group_id
       };
     });
+    Fecesbook.track('AddToCart');
 
     $.ajax({
       url: 'api/shows/' + this.state.show.id + '/reserveSeats/',
@@ -292,6 +294,7 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
   onProceedToPayment() {
     clearTimeout(this.timer);
     this.setState({paymentBegun: true, reservationExpirationTime: null});
+    Fecesbook.track('InitiateCheckout');
 
     $.post('api/orders/' + this.order.order_id + '/preparePayment',
       function(res) {
@@ -311,6 +314,7 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
     if (this.props.action === 'ok') {
       var order_id = this.props.args[0];
       var order_hash = this.props.args[1];
+      Fecesbook.track('Purchase');
       result = (
         <div className='alert alert-success'><p><em>Tilaus onnistui!</em></p>
           <p>Lähetimme liput sähköpostitse. Mikäli lippuja ei näy, tarkistathan roskapostikansiosi.
@@ -319,6 +323,7 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
         </div>
       );
     } else if (this.props.action === 'fail') {
+      Fecesbook.track('PurchaseFailed');
       result = (<div className='alert alert-warning'>Keskeytit tilauksesi ja varaamasi paikat on vapautettu myyntiin.</div>);
     }
     var rawProductionDescriptionMarkup = Marked(this.production.description, {sanitize: true}); // should be safe to inject

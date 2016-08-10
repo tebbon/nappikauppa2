@@ -172,6 +172,7 @@ gulp.task('index', function() {
   return gulp.src('./frontend/src/index.html')
       .pipe(inject(gulp.src(['./public/**/*.{css,js}', '!./public/**/admin*'], {read: false, cwd: './frontend/build/'}), {addRootSlash: false}))
       .pipe(inject(gulp.src('./config/google-analytics.js'), {name: 'analytics', transform: function(path, file) { return file.contents.toString('utf8'); }}))
+      .pipe(inject(gulp.src('./config/facebook.js'), {name: 'facebook', transform: function(path, file) { return file.contents.toString('utf8'); }}))
       .pipe(gulp.dest('./frontend/build/'));
 });
 
