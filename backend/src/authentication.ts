@@ -3,9 +3,9 @@
 const config = require('../../config/config.js');
 import log = require('./log');
 
-export function isAdmin(user: string) {
+export function isAdmin(user: string): boolean {
   const authenticatedUser = config.users.find(authUser => authUser.username === user);
-  return authenticatedUser && authenticatedUser.role === 'admin';
+  return authenticatedUser !== undefined && authenticatedUser.role === 'admin';
 }
 
 export function authenticate(user: string, password: string, role: string, cb: Function) {
