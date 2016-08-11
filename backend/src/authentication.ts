@@ -4,20 +4,21 @@ const config = require('../../config/config.js');
 import log = require('./log');
 
 export function isAdmin(user: string) {
-  return typeof(user) !== 'undefined';
+  const authenticatedUser = config.users.find(authUser => authUser.username === user);
+  return authenticatedUser && authenticatedUser.role === 'admin';
 }
 
-export function authenticate(user: string, password: string, cb: Function) {
+export function authenticate(user: string, password: string, role: string, cb: Function) {
 
-  const authenticatedUser = config.admin_users.find(adminUser =>
-     adminUser.username === user && adminUser.password === password
+  const isAuthenticated = config.users.find(authUser =>
+     authUser.username === user && authUser.password === password && (!role || authUser.role === role)
   );
 
-  if (!authenticatedUser) {
+  if (!isAuthenticated) {
     log.error('Access denied', {user: user});
     return cb(false);
   }
 
-  log.info('Authencation successful', {user: user});
+  log.info('Authentication successful', {user: user});
   return cb(true);
 }

@@ -20,14 +20,14 @@ var log = require('./backend/build/log.js');
 var adminAuth = httpAuth.basic({
     realm: 'Nappikauppa v2'
   }, function(username, password, cb) {
-    auth.authenticate(username, password, cb);
+    auth.authenticate(username, password, 'admin', cb);
   }
 );
 
 var checkerAuth = httpAuth.basic({
     realm: 'Nappikauppa v2 lipuntarkistin'
   }, function(username, password, cb) {
-    auth.authenticate(username, password, cb);
+    auth.authenticate(username, password, 'checker', cb);
   }
 );
 

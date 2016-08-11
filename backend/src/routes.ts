@@ -42,7 +42,7 @@ var checkUserSilently: RequestHandler = (req: express.Request, res: express.Resp
     next();
   } else {
     var creds = atob(authHeader.split(' ')[1]).split(':');
-    auth.authenticate(creds[0], creds[1], (authOk: boolean) => {
+    auth.authenticate(creds[0], creds[1], undefined, (authOk: boolean) => {
       if (authOk) {
         req.user = creds[0];
       }

@@ -19,10 +19,16 @@ module.exports = {
     user: '13466',
     password: '6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ'
   },
-  admin_users: [
+  users: [
     {
       username: 'huuhaa',
-      password: 'foobar'
+      password: 'foobar',
+      role: 'admin'
+    },
+    {
+      username: 'checker',
+      password: '1234',
+      role: 'checker'
     }
   ]
 };
