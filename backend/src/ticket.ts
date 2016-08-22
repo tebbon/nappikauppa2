@@ -5,7 +5,7 @@ import PDFDocument = require('pdfkit');
 import qr = require('qr-image');
 var toArray = require('stream-to-array');
 
-let raksuslogans = ['Ohjelmistoprojektit meren pohjasta avaruuden ääriin.', 'Das U-Boot loader.', 'Hyvä. Halpa. Hetivapaa.'];
+let raksuslogans = ['Ohjelmistoprojektit meren pohjasta avaruuden ääriin.', 'Das U-Boot loader.', 'Kovan luokan ohjelmistokehitystä.', 'Ota ohjelmistokehityksen rakettitiede haltuun.'];
 
 export interface ITicket {
   discount_group_title: string;
