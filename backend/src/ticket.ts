@@ -5,6 +5,8 @@ import PDFDocument = require('pdfkit');
 import qr = require('qr-image');
 var toArray = require('stream-to-array');
 
+let raksuslogans = ['Ohjelmistoprojektit meren pohjasta avaruuden ääriin.', 'Das U-Boot loader.', 'Hyvä. Halpa. Hetivapaa.'];
+
 export interface ITicket {
   discount_group_title: string;
   production_performer: string;
@@ -82,8 +84,14 @@ export function generatePdf(tickets: ITicket[]) {
         .image(qr.imageSync(hash, {type: 'png', margin: 0, size: 3}), width - margin - (29 * 3), 77, {})
         // QR code has 29 blocks of width 3
         // bottom align: trial-and-error
-
-        .image('assets/images/' + ticket.ticket_image_src, 0, height / 4, {width: width});
+        .image('assets/images/' + ticket.ticket_image_src, 0, height / 4, {width: width})
+        // Rakettitiede slogans
+        .moveDown(38)
+        .font('mp-bold')
+        .fontSize(18)
+        .fillColor('#06529A')
+        .text(raksuslogans[i % raksuslogans.length], {align: 'right'})
+        .text('www.rakettitiede.com', {align: 'right', link: 'http://www.rakettitiede.com'});
   }
   doc.end();
   return doc;
