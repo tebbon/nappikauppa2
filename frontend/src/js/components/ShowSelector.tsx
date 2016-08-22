@@ -18,7 +18,7 @@ export default class ShowSelector extends React.Component<IShowSelectorProps, an
 
     return (
       <div className='shopping-stage show-selector'>
-        <h2>Näytökset <small>1/5</small></h2>
+        <h2>Näytökset</h2>
         <ul className='list-unstyled'>
           {this.props.shows.map(function(show) {
             var date = new Date(show.time);
