@@ -60,6 +60,7 @@ create table nk2_discount_codes (
   `use_max` smallint(6) not null,
   `email` varchar(255) not null,
   `code_group` varchar(255) not null,
+  `show_in_stats` boolean not null default true,
   PRIMARY KEY  (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

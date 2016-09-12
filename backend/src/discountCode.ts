@@ -32,6 +32,7 @@ export function check(code: string, user: string): Promise<any> {
 export function getAll(): Promise<IDiscountCode[]> {
   return db.query('select code, eur, use_max, if(o.id is null, 0, count(*)) as used, dc.email, code_group from nk2_discount_codes dc \
     left join nk2_orders o on o.discount_code = dc.code \
+    where dc.show_in_stats is true \
     group by code');
 }
 
