@@ -186,6 +186,8 @@ export default class Store extends React.Component<IStoreProps, IStoreState> {
     this.tickets = [];
     this.order = null;
 
+    Fecesbook.track('ViewContent');
+
     var show = _.findWhere(this.shows, {id: showid});
 
     if (!this.venue || this.venue.id !== show.venue_id) {
